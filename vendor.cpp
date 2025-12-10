@@ -86,7 +86,7 @@ ListNode* head = nullptr;
 ListNode*tail = nullptr;
 
 cout << "Initialize queue with 3 customers..." <<endl;
-for(int i. =0; i < 3; i++) {
+for(int i =0; i < 3; i++) {
     Customer newCustomer;
     newCustomer.name = getRandomName(names, nameSize);
      newCustomer.drinkOrder = getRandomDrink(drinks, drinkSize);
@@ -97,7 +97,37 @@ enqueue(head, tail, newCustomer);
 cout << "\n------Starting 10 round simulation--------" <<endl;
 for(int round = 1; round <=10; round++) {
     cout << "\n-------Round" << round <<endl; 
+
+    if (!isEmpty(head)) {
+            Customer served = dequeue(head, tail);
+            cout << "Served: " << served.name << " with " << served.drinkOrder << endl;
+        } else {
+            cout << "Queue empty - no customer served." << endl;
+        }
+     //drink order refined rand from previous assingment 
+ if (rand() % 2 == 0) {  // 50% chance
+            Customer newCustomer;
+            newCustomer.name = getRandomName(names, namesSize);
+            newCustomer.drinkOrder = getRandomDrink(drinks, drinksSize);
+            
+            enqueue(head, tail, newCustomer);
+            cout << "New arrival: " << newCustomer.name << " ordering " << newCustomer.drinkOrder << endl;
+        } else {
+            cout << "No new customers this round." << endl;
+        }
+
+       int queueSize = 0;
+       ListNode* current = head;
+       while(current != nullptr) {
+        queueSize++;
+        current = current ->next;
 }
+cout << "Que size afetr round " << round <<":" <<queueSize <<endl;
+
+}
+ while(!isEmpty(head)) {
+    dequeue(head, tail);
+ }
 
 
     return 0;
