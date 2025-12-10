@@ -82,6 +82,14 @@ int drinkSize = sizeof(drinks) / sizeof(drinks[0]);
 ListNode* head = nullptr;
 ListNode*tail = nullptr;
 
+cout << "Initialize queue with 3 customers..." <<endl;
+for(int i. =0; i < 3; i++) {
+    Customer newCustomer;
+    newCustomer.name = getRandomName(names, namesSize);
+     newCustomer.drinkOrder = getRandomDrink(drinks, drinkSize);
+
+     enqueue(head, tail, newCustomer);
+}
 
     return 0;
 }
