@@ -22,6 +22,11 @@ struct MuffinCustomer {
     string muffinType;
 };
 
+struct BraceletCustomer {
+    string name;
+    string braceletColor;
+};
+
 ListNode* createNode(const Customer& customer) {
     ListNode* newNode = new ListNode;
     newNode -> data = customer;
@@ -76,6 +81,13 @@ string getRandomDrink(const string drinks[], int size) {
     return muffins[rand() % muffinCount];
     }
 
+    string getRandomBraceletColor() {
+    string colors[] = {"Red", "Blue", "Green", "Yellow", "Purple", 
+                       "Orange", "Pink", "Black", "White", "Rainbow"};
+    int colorCount = sizeof(colors) / sizeof(colors[0]);
+    return colors[rand() % colorCount];
+}
+
 
 
 int main()
@@ -102,7 +114,7 @@ ListNode* head = nullptr;
 ListNode*tail = nullptr;
 
 deque<MuffinCustomer>muffinQueue;
-
+vector<BraceletCustomer>braceletQueue;
 cout << "Initialize queue with 3 customers..." <<endl;
 for(int i =0; i < 3; i++) {
     Customer newCustomer;
@@ -119,6 +131,17 @@ cout << "\nInitializing muffin booth queue with 3 customers..." << endl;
         newCustomer.muffinType = getRandomMuffin();  // CALLING getRandomMuffin() HERE
         muffinQueue.push_back(newCustomer);
         cout << "Muffin: " << newCustomer.name << " ordering " << newCustomer.muffinType << endl;
+    }
+    cout << endl;
+
+
+    cout << "\nInitializing bracelet booth queue with 3 customers..." << endl;
+    for (int i = 0; i < 3; i++) {
+        BraceletCustomer newCustomer;
+        newCustomer.name = getRandomName(names, nameSize);
+        newCustomer.braceletColor = getRandomBraceletColor();
+        braceletQueue.push_back(newCustomer);  // Using vector push_back
+        cout << "Bracelet: " << newCustomer.name << " ordering " << newCustomer.braceletColor << endl;
     }
     cout << endl;
 
@@ -169,7 +192,25 @@ for(int round = 1; round <=10; round++) {
 
         }
 
-
+     cout << "\nBracelet Booth:" << endl;
+        if (!braceletQueue.empty()) {
+            // For vector, we serve from front (index 0) like a queue
+            BraceletCustomer served = braceletQueue[0];
+            braceletQueue.erase(braceletQueue.begin());  // Remove first element
+            cout << "  Served: " << served.name << " with " << served.braceletColor << endl;
+        } else {
+            cout << "  Queue empty - no customer served." << endl;
+        }
+        
+        if (rand() % 2 == 0) {
+            BraceletCustomer newCustomer;
+            newCustomer.name = getRandomName(names, nameSize);
+            newCustomer.braceletColor = getRandomBraceletColor();
+            braceletQueue.push_back(newCustomer);  // Using vector push_back
+            cout << "  New arrival: " << newCustomer.name << " ordering " << newCustomer.braceletColor << endl;
+        } else {
+            cout << "  No new customers this round." << endl;
+        }
 
 
        int queueSize = 0;
@@ -180,7 +221,7 @@ for(int round = 1; round <=10; round++) {
 }
 cout << "Que size afetr round " << round <<":" <<queueSize <<endl;
 cout <<"muffin queue:" << muffinQueue.size() <<endl;
-
+cout << "  Bracelet: " << braceletQueue.size() << endl;
 }
 
  
