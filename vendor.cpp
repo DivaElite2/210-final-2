@@ -156,7 +156,7 @@ cout << "\nInitializing muffin booth queue with 3 customers..." << endl;
         BraceletCustomer newCustomer;
         newCustomer.name = getRandomName(names, nameSize);
         newCustomer.braceletColor = getRandomBraceletColor();
-        braceletQueue.push_back(newCustomer);  // Using vector push_back
+        braceletQueue.push_back(newCustomer);  
         cout << "Bracelet: " << newCustomer.name << " ordering " << newCustomer.braceletColor << endl;
     }
     cout << endl;
@@ -224,7 +224,7 @@ for(int round = 1; round <=10; round++) {
 
      cout << "\nBracelet Booth:" << endl;
         if (!braceletQueue.empty()) {
-            // For vector, we serve from front (index 0) like a queue
+     
             BraceletCustomer served = braceletQueue[0];
             braceletQueue.erase(braceletQueue.begin());  // Remove first element
             cout << "  Served: " << served.name << " with " << served.braceletColor << endl;
