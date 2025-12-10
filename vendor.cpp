@@ -75,6 +75,7 @@ string getRandomDrink(const string drinks[], int size) {
 int main()
 {
     srand(time(0));
+    
 
     string names[] = {"Alice", "Bob", "Charlie", "Diana", "Ethan",
         "Fiona", "George", "Hannah", "Ian", "Julia",
@@ -94,6 +95,8 @@ int drinkSize = sizeof(drinks) / sizeof(drinks[0]);
 ListNode* head = nullptr;
 ListNode*tail = nullptr;
 
+deque<MuffinCustomer>muffinQueue;
+
 cout << "Initialize queue with 3 customers..." <<endl;
 for(int i =0; i < 3; i++) {
     Customer newCustomer;
@@ -103,6 +106,33 @@ enqueue(head, tail, newCustomer);
     cout <<"Added: " << newCustomer.name << "ordering " <<newCustomer.drinkOrder <<endl;
 
 }
+
+
+
+ cout << "\nMuffin Booth:" << endl;
+        if (!muffinQueue.empty()) {
+            MuffinCustomer served = muffinQueue.front();
+            muffinQueue.pop_front();  // Using deque pop_front
+            cout << "  Served: " << served.name << " with " << served.muffinType << endl;
+        } else {
+            cout << "  Queue empty - no customer served." << endl;
+        }
+        
+        if (rand() % 2 == 0) {
+            MuffinCustomer newCustomer;
+            newCustomer.name = getRandomName(names, nameSize);
+            newCustomer.muffinType = getRandomMuffin();
+            muffinQueue.push_back(newCustomer);  // Using deque push_back
+            cout << "  New arrival: " << newCustomer.name << " ordering " << newCustomer.muffinType << endl;
+        } else {
+            cout << "  No new customers this round." << endl;
+
+        }
+
+
+
+
+
 cout << "\n------Starting 10 round simulation--------" <<endl;
 for(int round = 1; round <=10; round++) {
     cout << "\n-------Round" << round <<endl; 
@@ -126,24 +156,7 @@ for(int round = 1; round <=10; round++) {
 
         }
 
-   cout << "\nMuffin Booth:" << endl;
-        if (!muffinQueue.empty()) {
-            MuffinCustomer served = muffinQueue.front();
-            muffinQueue.pop_front();  // Using deque pop_front
-            cout << "  Served: " << served.name << " with " << served.muffinType << endl;
-        } else {
-            cout << "  Queue empty - no customer served." << endl;
-        }
-        
-        if (rand() % 2 == 0) {
-            MuffinCustomer newCustomer;
-            newCustomer.name = getRandomName(names, namesSize);
-            newCustomer.muffinType = getRandomMuffin();
-            muffinQueue.push_back(newCustomer);  // Using deque push_back
-            cout << "  New arrival: " << newCustomer.name << " ordering " << newCustomer.muffinType << endl;
-        } else {
-            cout << "  No new customers this round." << endl;
-        }
+  
 
 
 
@@ -158,6 +171,7 @@ for(int round = 1; round <=10; round++) {
         current = current ->next;
 }
 cout << "Que size afetr round " << round <<":" <<queueSize <<endl;
+cout <<"muffin queue:" << muffinQueue.size() <<endl;
 
 }
 
