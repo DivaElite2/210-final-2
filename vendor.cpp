@@ -16,6 +16,12 @@ struct ListNode {
     ListNode* next;
 };
 
+
+struct MuffinCustomer {
+    string name;
+    string muffinType;
+};
+
 ListNode* createNode(const Customer& customer) {
     ListNode* newNode = new ListNode;
     newNode -> data = customer;
