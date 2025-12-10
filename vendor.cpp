@@ -34,7 +34,7 @@ void enqueue(ListNode*& head, ListNode*& tail, const Customer& customer) {
 }
 
 Customer dequeue(ListNode*& head, ListNode*& tail) {
-    if(head == nullptr)
+    if(head == nullptr) {
     return{"", ""};
 }
 
@@ -42,7 +42,7 @@ Customer servedCustomer = head-> data;
 ListNode* temp = head;
 head = head->next;
 
-if(head == nullptr) {
+if (head == nullptr) {
     tail = nullptr;
 }
 
@@ -50,6 +50,18 @@ delete temp;
 return servedCustomer;
 
 }
+
+bool isEmpty(ListNode* head) {
+    return head == nullptr;
+}
+
+string getRandomDrink(const string drinks[], int size) {
+    return drinks[rand() % size];
+
+}
+
+
+
 int main()
 {
     srand(time(0));
@@ -64,7 +76,11 @@ int main()
         "Iced Coffee", "Frappe", "Matcha Latte", "Chai Tea", "Affogato"
     };
 
+int nameSize = sizeof(names) / sizeof(names[0]);
+int drinkSize = sizeof(drinks) / sizeof(drinks[0]);
 
+ListNode* head = nullptr;
+ListNode*tail = nullptr;
 
 
     return 0;
