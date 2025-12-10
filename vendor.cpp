@@ -107,13 +107,14 @@ for(int round = 1; round <=10; round++) {
      //drink order refined rand from previous assingment 
  if (rand() % 2 == 0) {  // 50% chance
             Customer newCustomer;
-            newCustomer.name = getRandomName(names, namesSize);
-            newCustomer.drinkOrder = getRandomDrink(drinks, drinksSize);
+            newCustomer.name = getRandomName(names, nameSize);
+            newCustomer.drinkOrder = getRandomDrink(drinks, drinkSize);
             
             enqueue(head, tail, newCustomer);
             cout << "New arrival: " << newCustomer.name << " ordering " << newCustomer.drinkOrder << endl;
         } else {
             cout << "No new customers this round." << endl;
+
         }
 
        int queueSize = 0;
@@ -125,10 +126,11 @@ for(int round = 1; round <=10; round++) {
 cout << "Que size afetr round " << round <<":" <<queueSize <<endl;
 
 }
- while(!isEmpty(head)) {
+
+ 
+while(!isEmpty(head)) {
     dequeue(head, tail);
  }
-
 
     return 0;
 }
