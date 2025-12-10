@@ -54,6 +54,9 @@ return servedCustomer;
 bool isEmpty(ListNode* head) {
     return head == nullptr;
 }
+string getRandomName(const string names[], int size) {
+    return names[rand() % size];
+}
 
 string getRandomDrink(const string drinks[], int size) {
     return drinks[rand() % size];
@@ -85,11 +88,14 @@ ListNode*tail = nullptr;
 cout << "Initialize queue with 3 customers..." <<endl;
 for(int i. =0; i < 3; i++) {
     Customer newCustomer;
-    newCustomer.name = getRandomName(names, namesSize);
+    newCustomer.name = getRandomName(names, nameSize);
      newCustomer.drinkOrder = getRandomDrink(drinks, drinkSize);
+enqueue(head, tail, newCustomer);
+    cout <<"Added: " << newCustomer.name << "ordering " <<newCustomer.drinkOrder <<endl;
 
-     enqueue(head, tail, newCustomer);
 }
+
+
 
     return 0;
 }
