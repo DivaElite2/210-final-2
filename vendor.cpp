@@ -97,7 +97,9 @@ string getRandomSmoothie() {
     string smoothies[] = {"Berry Blast", "Tropical", "Green Detox", "Protein Power", 
                           "Mango Tango", "Strawberry Banana", "Peanut Butter", "Acai Bowl"};
 
-                          int smoothieCount = sizeof(smoothies) / sizeof(smoothies[0]);
+                        
+
+    int smoothieCount = sizeof(smoothies) / sizeof(smoothies[0]);
     return smoothies[rand() % smoothieCount];
 }
 
@@ -158,6 +160,20 @@ cout << "\nInitializing muffin booth queue with 3 customers..." << endl;
         cout << "Bracelet: " << newCustomer.name << " ordering " << newCustomer.braceletColor << endl;
     }
     cout << endl;
+
+
+
+     cout << "\nInitializing smoothie booth stack with 3 customers..." << endl;
+    for (int i = 0; i < 3; i++) {
+        SmoothieCustomer newCustomer;
+        newCustomer.name = getRandomName(names, nameSize);
+        newCustomer.smoothieType = getRandomSmoothie();
+        smoothieStack.push(newCustomer);  // Using stack push
+        cout << "Smoothie: " << newCustomer.name << " ordering " << newCustomer.smoothieType << endl;
+    }
+    cout << endl;
+    
+    
 
 cout << "\n------Starting 10 round simulation--------" <<endl;
 for(int round = 1; round <=10; round++) {
@@ -226,6 +242,14 @@ for(int round = 1; round <=10; round++) {
             cout << "  No new customers this round." << endl;
         }
 
+        cout << "\nSmoothie Booth (LIFO - Last In First Out):" << endl;
+        if (!smoothieStack.empty()) {
+            SmoothieCustomer served = smoothieStack.top();  // Get top of stack
+            smoothieStack.pop();  // Remove from stack
+            cout << "  Served: " << served.name << " with " << served.smoothieType << endl;
+        } else {
+            cout << "  Stack empty - no customer served." << endl;
+        }
 
        int queueSize = 0;
        ListNode* current = head;
@@ -236,6 +260,7 @@ for(int round = 1; round <=10; round++) {
 cout << "Que size afetr round " << round <<":" <<queueSize <<endl;
 cout <<"muffin queue:" << muffinQueue.size() <<endl;
 cout << "  Bracelet: " << braceletQueue.size() << endl;
+cout << "Smoothie" << smoothieStack.size() <<endl;
 }
 
  
