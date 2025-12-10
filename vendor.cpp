@@ -94,7 +94,10 @@ enqueue(head, tail, newCustomer);
     cout <<"Added: " << newCustomer.name << "ordering " <<newCustomer.drinkOrder <<endl;
 
 }
-
+cout << "\n------Starting 10 round simulation--------" <<endl;
+for(int round = 1; round <=10; round++) {
+    cout << "\n-------Round" << round <<endl; 
+}
 
 
     return 0;
