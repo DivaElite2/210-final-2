@@ -27,6 +27,11 @@ struct BraceletCustomer {
     string braceletColor;
 };
 
+struct SmoothieCustomer{
+    string name;
+    string smoothieType;
+};
+
 ListNode* createNode(const Customer& customer) {
     ListNode* newNode = new ListNode;
     newNode -> data = customer;
@@ -88,9 +93,16 @@ string getRandomDrink(const string drinks[], int size) {
     return colors[rand() % colorCount];
 }
 
+string getRandomSmoothie() {
+    string smoothies[] = {"Berry Blast", "Tropical", "Green Detox", "Protein Power", 
+                          "Mango Tango", "Strawberry Banana", "Peanut Butter", "Acai Bowl"};
 
+                          int smoothieCount = sizeof(smoothies) / sizeof(smoothies[0]);
+    return smoothies[rand() % smoothieCount];
+}
 
-int main()
+ 
+ int main()
 {
     srand(time(0));
     
@@ -115,6 +127,8 @@ ListNode*tail = nullptr;
 
 deque<MuffinCustomer>muffinQueue;
 vector<BraceletCustomer>braceletQueue;
+stack<SmoothieCustomer>smoothieStack;
+
 cout << "Initialize queue with 3 customers..." <<endl;
 for(int i =0; i < 3; i++) {
     Customer newCustomer;
