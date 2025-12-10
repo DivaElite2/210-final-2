@@ -33,9 +33,23 @@ void enqueue(ListNode*& head, ListNode*& tail, const Customer& customer) {
 
 }
 
+Customer dequeue(ListNode*& head, ListNode*& tail) {
+    if(head == nullptr)
+    return{"", ""};
+}
 
+Customer servedCustomer = head-> data;
+ListNode* temp = head;
+head = head->next;
 
+if(head == nullptr) {
+    tail = nullptr;
+}
 
+delete temp;
+return servedCustomer;
+
+}
 int main()
 {
     srand(time(0));
