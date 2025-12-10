@@ -15,6 +15,27 @@ struct ListNode {
     ListNode* next;
 };
 
+ListNode* createNode(const Customer& customer) {
+    ListNode* newNode = new ListNode;
+    newNode -> data = customer;
+    newNode->  next = nullptr;
+    return newNode;
+}
+void enqueue(ListNode*& head, ListNode*& tail, const Customer& customer) {
+    ListNode* newNode = createNode(customer);
+
+    if(tail == nullptr) {
+        head = tail = newNode;
+    }else {
+        tail -> next = newNode;
+        tail = newNode;
+    }
+
+}
+
+
+
+
 int main()
 {
     srand(time(0));
@@ -31,7 +52,7 @@ int main()
 
 
 
-    
+
     return 0;
 }
 
